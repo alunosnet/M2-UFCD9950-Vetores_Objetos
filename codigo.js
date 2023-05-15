@@ -128,7 +128,7 @@ function LerListaAlunos()
     //verificar se existe a lista de alunos
     if(localStorage.getItem("lista_alunos")==null)
     {
-        lista_alunos=[];
+        LerFicheiro();
     }
     else
     {
@@ -162,4 +162,57 @@ function AtualizaSelectAlunos()
         opcao.value=posicao;
         select_alunos.options.add(opcao);
     }
+}
+
+async function LerFicheiro()
+{
+    const ficheiro = await fetch("dados.json");
+    const dados = await ficheiro.json();
+
+    lista_alunos=dados;
+
+    for(let posicao=0;posicao<lista_alunos.length;posicao++)
+        {
+            lista_alunos[posicao]=new Aluno(
+                lista_alunos[posicao].nome,
+                lista_alunos[posicao].numero,
+                lista_alunos[posicao].turma,
+                lista_alunos[posicao].faltas,
+                lista_alunos[posicao].media
+            );
+        }
+
+    AtualizaSelectAlunos();
+}
+
+function PesquisarAluno()
+{
+    let input_nome=document.getElementById("input_nome");
+    let nome_a_pesquisar=input_nome.value;
+
+    let select_alunos=document.getElementById("select_alunos");
+    select_alunos.options.length=0;
+    //percorrer o vetor dos alunos
+    for(let posicao=0;posicao<lista_alunos.length;posicao++)
+    {
+        if (lista_alunos[posicao].nome.toLowerCase().includes(nome_a_pesquisar.toLowerCase()))
+        {
+
+            let opcao=document.createElement("option");
+            opcao.text=lista_alunos[posicao].nome;
+            opcao.value=posicao;
+            select_alunos.options.add(opcao);
+        }
+    }
+
+}
+
+function GuardarAlunoEditado()
+{
+
+}
+
+function  EditarAlunoSelecionado()
+{
+
 }

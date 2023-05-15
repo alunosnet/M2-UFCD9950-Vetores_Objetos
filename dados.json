@@ -1,0 +1,16 @@
+[
+    {
+        "numero": 1,
+        "nome": "joaquim",
+        "turma": "10ºI",
+        "media": 12,
+        "faltas": 1
+    },
+    {
+        "numero": 2,
+        "nome": "maria",
+        "turma": "10ºI",
+        "media": 15,
+        "faltas": 5
+    }
+]
