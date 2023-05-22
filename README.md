@@ -1,4 +1,4 @@
-# VetoresObjetos
+# Vetores e Objetos
 Exercício em Javascript com vetores e objetos
 Utiliza localStorage e cookies.
 
