@@ -209,10 +209,75 @@ function PesquisarAluno()
 
 function GuardarAlunoEditado()
 {
+   //recolher os dados da página
+   let input_nome=document.getElementById("input_nome");
+   let input_numero=document.getElementById("input_numero");
+   let input_turma=document.getElementById("input_turma");
+   let input_media=document.getElementById("input_media");
+   let input_faltas=document.getElementById("input_faltas");
+   let nome=input_nome.value;
+   let numero=input_numero.value;
+   let turma=input_turma.value;
+   let media=input_media.value;
+   let faltas=input_faltas.value;
+   //posição do aluno selecionado
+   let select_alunos=document.getElementById("select_alunos");
+   let posicao=select_alunos.selectedIndex;
+   //aluno selecionado
+    let aluno_selecionado=lista_alunos[posicao];
+    aluno_selecionado.nome=nome;
+    aluno_selecionado.numero=numero;
+    aluno_selecionado.turma=turma;
+    aluno_selecionado.media=media;
+    aluno_selecionado.faltas=faltas;
+    //atualiza a select
+    select_alunos.options[posicao].text=nome;
 
+   //limpar as inputs
+   input_nome.value="";
+   input_turma.value="";
+   input_numero.value="0";
+   input_faltas.value="0";
+   input_media.value="0";
+   //guardar no localstorage
+   GuardarListaAlunos();
 }
-
+//Função que mostra os dados do aluno selecionado
 function  EditarAlunoSelecionado()
 {
+    let input_nome=document.getElementById("input_nome");
+    let input_numero=document.getElementById("input_numero");
+    let input_turma=document.getElementById("input_turma");
+    let input_media=document.getElementById("input_media");
+    let input_faltas=document.getElementById("input_faltas");
+    //aluno selecionado na select
+    let select_lista=document.getElementById("select_alunos");
+    let posicao=select_lista.selectedIndex;
+    //mostrar os dados do aluno
+    input_nome.value=lista_alunos[posicao].nome;
+    input_numero.value=lista_alunos[posicao].numero;
+    input_turma.value=lista_alunos[posicao].turma;
+    input_media.value=lista_alunos[posicao].media;
+    input_faltas.value=lista_alunos[posicao].faltas;
+    
+}
+
+function RemoverAluno()
+{
+    let select_lista=document.getElementById("select_alunos");
+    let posicao=select_lista.selectedIndex;
+    let nome=lista_alunos[posicao].nome;
+    if(confirm("Tem a certeza que pretende remover o aluno "+nome)==false)
+    {
+        return;
+    }
+    //apagar da lista dos alunos
+    lista_alunos.splice(posicao,1);
+
+    //atualizar a select
+    AtualizaSelectAlunos();
+
+    //atualizar o local storage
+    GuardarListaAlunos();
 
 }

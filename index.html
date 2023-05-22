@@ -15,7 +15,10 @@
         Número:<input class="form-control" type="number" id="input_numero"/><br>
         Faltas:<input class="form-control" type="number" id="input_faltas"/><br>
         Média:<input class="form-control" type="number" id="input_media"/><br>
-        <button class="btn btn-success" onclick="GuardarAluno()">Guardar</button><br>
+        <button class="btn btn-success" onclick="GuardarAluno()">Guardar</button>
+        <a href="editar.html" class="btn btn-info">Editar alunos</a>
+        <button class="btn btn-danger" onclick="RemoverAluno()">Remover aluno</button>
+        <br>
         <select class="form-control" size="10" id="select_alunos" onchange="AlunoSelecionado()"></select><br>
         <footer id="aviso">
             Este site utiliza cookies.
